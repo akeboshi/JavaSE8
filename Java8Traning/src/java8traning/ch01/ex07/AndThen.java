@@ -5,12 +5,16 @@
  */
 package java8traning.ch01.ex07;
 
+import java.util.Objects;
+
 /**
  *
  * @author akari
  */
 public class AndThen {
 	public static Runnable andThen (Runnable r1, Runnable r2) {
+		Objects.requireNonNull(r1);
+		Objects.requireNonNull(r2);
 		return () -> {
 			r1.run();
 			r2.run();
