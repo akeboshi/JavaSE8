@@ -24,7 +24,8 @@ public class ArraySortTest {
      @Test
      public void isSameThread() {
          ArraySort as = new ArraySort();
-         boolean isSame = as.isSameThread();
+        String[] words = {"abc","abcd","ab","a"};
+         boolean isSame = as.isSameThread(words);
          if (isSame)
              System.out.println("同一スレッドです");
          else
