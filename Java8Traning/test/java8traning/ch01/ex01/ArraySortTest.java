@@ -5,10 +5,6 @@
  */
 package java8traning.ch01.ex01;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,7 +13,7 @@ import static org.junit.Assert.*;
  * @author akari
  */
 public class ArraySortTest {
-    
+
     /**
      * 同じスレッドならOK
      */
@@ -30,6 +26,6 @@ public class ArraySortTest {
              System.out.println("同一スレッドです");
          else
              System.out.println("別スレッドです");
-         assertTrue(isSame);     
+         assertTrue(isSame);
      }
 }

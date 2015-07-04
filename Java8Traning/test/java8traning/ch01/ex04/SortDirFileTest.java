@@ -9,10 +9,6 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -29,7 +25,7 @@ public class SortDirFileTest {
         Collections.shuffle(lf);
         SortDirFile.getSortedFile(lf.toArray(files));
         if (files.length == 0) fail ("no dirs");
-        
+
         boolean modeChanged = false;
 
         for (int i = 1; i < lf.size(); i++) {

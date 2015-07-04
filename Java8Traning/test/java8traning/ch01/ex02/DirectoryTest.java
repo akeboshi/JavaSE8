@@ -7,10 +7,6 @@ package java8traning.ch01.ex02;
 
 import java.io.File;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -30,7 +26,7 @@ public class DirectoryTest {
             }
         }
     }
-    
+
     @Test
     public void subDirsByMethodRef() {
         File dir = new File("/tmp");
