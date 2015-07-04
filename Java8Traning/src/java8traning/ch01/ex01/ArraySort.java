@@ -15,8 +15,7 @@ import java.util.List;
  * @author akari
  */
 public class ArraySort {    
-    public boolean isSameThread(){
-        String[] words = {"abc","abcd","ab","a"};
+    public boolean isSameThread(String[] words){
         List<Long> ids = new ArrayList<>();
         ids.add(Thread.currentThread().getId());
         Arrays.sort(words, (String f, String s) -> {
