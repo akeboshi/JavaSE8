@@ -32,9 +32,7 @@ public class StreamToArrayList {
 		ArrayList<T> list = new ArrayList<>();
 		for (int i = 0; i < size ; i++)
 			list.add(null);
-		stream.parallel().forEach(x -> {
-			list.set(c.getAndInc(), x);
-		});
+		stream.parallel().forEach(x -> list.set(c.getAndInc(), x));
 		return list;
 	}
 }
