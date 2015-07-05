@@ -24,18 +24,27 @@ import org.junit.Test;
  */
 public class CombArrayListTest {
 
-    @Test
-    public void combArrayListTest() throws IOException {
-        String[] st1 = {"foo","bar"};
-        String[] st2 = {"aa","ii"};
-        String[] st3 = {"java7","java8"};
-        List<ArrayList<String>> lals = new ArrayList<>();
-        lals.add(new ArrayList<>(Arrays.asList(st1)));
-        lals.add(new ArrayList<>(Arrays.asList(st2)));
-        lals.add(new ArrayList<>(Arrays.asList(st3)));
-        
-        ArrayList<String> al = CombArrayList.compArrayList1(lals.stream());
-        al.stream().forEach(System.out::println);
-    }
+	@Test
+	public void combArrayListTest() throws IOException {
+		List<ArrayList<Integer>> lali = new ArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			ArrayList<Integer> ali = new ArrayList<>();
+			for (Integer j = i * 10; j < (i + 1) * 10; j++) {
+				ali.add(j);
+			}
+			lali.add(ali);
+		}
+
+		ArrayList<Integer> list1 = CombArrayList.compArrayList1(lali.stream());
+		ArrayList<Integer> list2 = CombArrayList.compArrayList2(lali.stream());
+		ArrayList<Integer> list3 = CombArrayList.compArrayList3(lali.stream());
+
+		for (Integer i = 0; i < 100; i++)
+			assertEquals(i, list1.get(i));
+		for (Integer i = 0; i < 100; i++)
+			assertEquals(i, list2.get(i));
+		for (Integer i = 0; i < 100; i++)
+			assertEquals(i, list3.get(i));
+	}
 
 }

@@ -15,13 +15,30 @@ import java.util.stream.Stream;
  * @author akari
  */
 public class CombArrayList {
-    public static <T> ArrayList<T> compArrayList1 (Stream<ArrayList<T>> st) {
-        return st.reduce((x,y) ->{
-            ArrayList<T> al = new ArrayList<>();
-            al.addAll(x);
-            al.addAll(y);
-            return al;
-        }).get();
-    }
-}
+	public static <T> ArrayList<T> compArrayList1(Stream<ArrayList<T>> st) {
+		return st.reduce((x, y) -> {
+			ArrayList<T> al = new ArrayList<>();
+			al.addAll(x);
+			al.addAll(y);
+			return al;
+		}).get();
+	}
 
+	public static <T> ArrayList<T> compArrayList2(Stream<ArrayList<T>> st) {
+		return st.reduce(new ArrayList<>(), (x, y) -> {
+			x.addAll(y);
+			return x;
+		});
+	}
+
+	public static <T> ArrayList<T> compArrayList3(Stream<ArrayList<T>> st) {
+		return st.reduce(new ArrayList<>(), (x,y) -> {
+			x.addAll(y);
+			return x;
+		},
+		(x,y) -> {
+			x.addAll(y);
+		return x;
+		});
+	}
+}
