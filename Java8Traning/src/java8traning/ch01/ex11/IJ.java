@@ -5,11 +5,6 @@
  */
 package java8traning.ch01.ex11;
 
-import java.util.Collection;
-import java.util.Objects;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-
 /**
  *
  * @author akari

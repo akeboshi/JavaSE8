@@ -35,16 +35,16 @@ public class ParallelCounter {
             final List<String> sWords = words.subList(s, e);
             t.add(new CountThread(3, sWords));
         }
-        for (CountThread t1 : t) {
+        t.stream().forEach((t1) -> {
             t1.start();
-        }
-        for (CountThread t1 : t) {
+        });
+        t.stream().forEach((t1) -> {
             try {
                 t1.join();
             } catch (InterruptedException e) {
                 System.out.println(e);
             }
-        }
+        });
         int count = 0;
         for (CountThread t1 : t) count += t1.getCount();
 
