@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java8traning.ch01.ex10;
+package java8traning.ch01.ex11;
 
 import java.util.Collection;
 import java.util.Objects;
