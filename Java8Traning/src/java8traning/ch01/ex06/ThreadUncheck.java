@@ -27,7 +27,7 @@ public class ThreadUncheck {
             try {
                 re.run();
             } catch (Exception e) {
-                throw new RuntimeException();
+                throw new RuntimeException(e);
             }
         };
     }
