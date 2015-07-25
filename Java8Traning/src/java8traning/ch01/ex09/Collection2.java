@@ -27,7 +27,7 @@ public interface Collection2<T> extends Collection<T>{
 		// A
 		// for (T t : this) if (filter.test(t)) action.accept(t);
 		// B
-		forEach((T t) -> {
+		forEach((t) -> {
 			if (filter.test(t)) action.accept(t);
 		});
 	}

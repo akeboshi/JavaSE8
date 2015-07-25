@@ -7,22 +7,27 @@ package java8traning.ch01.ex01;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
  * @author akari
  */
-public class ArraySort {    
-    public boolean isSameThread(String[] words){
-        List<Long> ids = new ArrayList<>();
+public class ArraySort {
+
+    public boolean isSameThread(String[] words) {
+        Set<Long> ids = new HashSet<>();
         ids.add(Thread.currentThread().getId());
-        Arrays.sort(words, (String f, String s) -> {
+        Arrays.sort(words, (f, s) -> {
             ids.add(Thread.currentThread().getId());
             return Integer.compare(f.length(), s.length());
-                });
-        for (Long id : ids) if (!ids.get(0).equals(id)) return false;
-        return true;
+        });
+        
+        if (ids.size() == 1) return true;
+        
+        return false;
     }
 }

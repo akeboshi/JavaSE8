@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  * @author akari
  */
 public class ArraySortTest {
-
+    
     /**
      * 同じスレッドならOK
      */
