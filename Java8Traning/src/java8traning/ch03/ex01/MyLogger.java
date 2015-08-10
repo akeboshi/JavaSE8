@@ -1,4 +1,8 @@
 /*
+ * Copyright (c) 2015. Isao Aruga. All rights reserved.
+ */
+
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -11,6 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * 条件的なロギングを提供することで、遅延ロギング技法を強化しなさい。 典型的な呼び出しは、
+ * logIf(Level.FINEST, () -> i == 10, () -> "a[10] = " + a[10])
+ * となります。ロガーがメッセージをロギングしないのであれば、 その条件を評価しないようにしなさい
  *
  * @author akari
  */
