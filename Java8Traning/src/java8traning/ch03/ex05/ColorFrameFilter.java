@@ -17,18 +17,28 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.function.BiFunction;
+import java.util.function.UnaryOperator;
+
 /**
  * Created by akari on 2015/08/10.
  */
 public class ColorFrameFilter extends Application{
     public static Image transform(Image in, ColorTransformer f){
+        return subTransform(in, (x, y) -> f.apply(x, y, in.getPixelReader().getColor(x, y)));
+    }
+
+    public static Image transform(Image in, UnaryOperator<Color> f) {
+        return subTransform(in, (x,y) -> f.apply(in.getPixelReader().getColor(x,y)));
+    }
+
+    protected static Image subTransform(Image in, BiFunction<Integer, Integer, Color> f) {
         int width = (int) in.getWidth();
         int height = (int) in.getHeight();
         WritableImage out = new WritableImage(width, height);
         for (int x = 0; x < width; x++)
             for (int y = 0; y < height; y++)
-                out.getPixelWriter().setColor(x, y,
-                        f.apply(x, y, in.getPixelReader().getColor(x, y)));
+                out.getPixelWriter().setColor(x, y, f.apply(x,y));
         return out;
     }
 

@@ -9,6 +9,6 @@ import javafx.scene.paint.Color;
 /**
  * Created by akari on 2015/08/10.
  */
-interface ColorTransformer {
+public interface ColorTransformer {
     Color apply(int x, int y, Color color);
 }

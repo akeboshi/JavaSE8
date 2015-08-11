@@ -18,7 +18,7 @@ package java8traning.ch03.ex04;
  * NotificationFilter boolean	isNotificationEnabled(Notification notification)
  * ServiceRegistry.Filter boolean	filter(Object provider)
  * StreamFilter boolean	accept(XMLStreamReader reader)
- *
+ * <p>
  * ### これらのうちPredicateよりも付加価値があるもの
  * LSSerializerFilter は、戻り値が違うので論外。
  * FilenameFilter は、BiPredicateと比較するべき？
