@@ -20,33 +20,27 @@ import java.util.function.UnaryOperator;
 public class LatentImage {
     private Image in;
     private List<ImageTransformer> pendingOperations = new ArrayList<>();
-    private Color[][] cashe;
 
     private LatentImage() {
     }
 
     private LatentImage(Image in) {
+        this();
         this.setInputImage(in);
-        this.cashe = new Color[(int)in.getWidth()][(int)in.getHeight()];
     }
 
     private void setInputImage(Image in) {
         this.in = in;
     }
 
-    private Color getColor (int x, int y, PixelReader r) {
-        if (cashe[x][y] == null)
-            return r.getColor(x, y);
-        return cashe[x][y];
-    }
 
     public LatentImage transform(UnaryOperator<Color> f) {
-        pendingOperations.add((x, y, r) -> f.apply(getColor(x, y, r)));
+        pendingOperations.add((x, y, r) -> f.apply(r.getColor(x, y)));
         return this;
     }
 
     public LatentImage transform(ColorTransformer f) {
-        pendingOperations.add((x, y, r) -> f.apply(x, y, getColor(x, y, r)));
+        pendingOperations.add((x, y, r) -> f.apply(x, y, r.getColor(x, y)));
         return this;
     }
 
@@ -63,14 +57,13 @@ public class LatentImage {
         int width = (int) in.getWidth();
         int height = (int) in.getHeight();
         WritableImage out = new WritableImage(width, height);
-        PixelReader reader = in.getPixelReader();
+        ImagePixelReader reader = new ImagePixelReader(width, height, in.getPixelReader());
 
         for (int x = 0; x < width; x++)
             for (int y = 0; y < height; y++) {
                 for (ImageTransformer f : pendingOperations)
-                    cashe[x][y] = f.apply(x, y, reader);
-                out.getPixelWriter().setColor(x, y, cashe[x][y]);
+                    reader.setColorCache(x,y,f.apply(x, y, reader));
             }
-        return out;
+        return reader.getImage();
     }
 }
