@@ -63,19 +63,19 @@ public class ParallelLatentImage {
         try {
             ExecutorService pool = Executors.newCachedThreadPool();
             for (int i = 0; i < n; i++) {
-                int fromY = i * height / n;
-                int toY = (i + 1)  * height / n;
+                int start = i * width / n;
+                int end = (i + 1)  * width / n;
                 pool.submit(() -> {
                     System.out.println(Thread.currentThread().getName());
-                    for (int x = 0; x < width; x++)
-                        for (int y = fromY; y < toY; y++) {
+                    for (int x = start; x < end; x++)
+                        for (int y = 0; y < height; y++) {
                             for (ImageTransformer f : pendingOperations)
                                 reader.setColorCache(x, y, f.apply(x, y, reader));
                         }
                 });
             }
             pool.shutdown();
-            pool.awaitTermination(1, TimeUnit.HOURS);
+            pool.awaitTermination(1, TimeUnit.MINUTES);
         } catch (InterruptedException e){
             e.printStackTrace();
         }
