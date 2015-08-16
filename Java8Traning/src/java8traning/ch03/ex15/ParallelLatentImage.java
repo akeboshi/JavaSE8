@@ -77,7 +77,7 @@ public class ParallelLatentImage {
             pool.shutdown();
             pool.awaitTermination(1, TimeUnit.HOURS);
         } catch (InterruptedException e){
-            e.printStackTrace();;
+            e.printStackTrace();
         }
         return reader.getImage();
     }
