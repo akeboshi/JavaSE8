@@ -28,8 +28,6 @@ public class GroupeByCount {
 	private static int length = 5;
 
 	public static List<Integer> count(Stream<String> stream) {
-		AtomicInteger[] ai = new AtomicInteger[length];
-
 		Map<Integer, Long> map = stream.filter(w -> (w.length() < length))
 				.collect(Collectors.groupingBy(String::length, Collectors.counting()));
 

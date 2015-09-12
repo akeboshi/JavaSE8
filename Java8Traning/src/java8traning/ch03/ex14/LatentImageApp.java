@@ -46,10 +46,45 @@ public class LatentImageApp extends Application {
                 }
             return Color.color(r / n, g / n, b / n);
         };
+        ImageTransformer edgeFilter = (x, y, reader) -> {
+            Color c = reader.getColor(x, y);
+
+            Color n;
+            if ( y == 0)
+                n = reader.getColor(x, y);
+            else
+                n = reader.getColor(x , y - 1);
+
+            Color e;
+            if ( x == 0)
+                e = reader.getColor(x, y);
+            else
+                e = reader.getColor(x - 1, y);
+
+
+            Color w;
+            if ( x == width - 1)
+                w = reader.getColor(x, y);
+            else
+                w = reader.getColor(x + 1, y);
+
+            Color s;
+            if ( y == height - 1)
+                s = reader.getColor(x, y);
+            else
+                s = reader.getColor(x, y + 1);
+            double r = c.getRed() * 4 - n.getRed() - e.getRed() - w.getRed() - s.getRed();
+            r = r > 1.0 ? 1.0 : r;
+            double g = c.getGreen() * 4 - n.getGreen() - e.getGreen() - w.getGreen() - s.getGreen();
+            g = g > 1.0 ? 1.0 : g;
+            double b = c.getBlue() * 4 - n.getBlue() - e.getBlue() - w.getBlue() - s.getBlue();
+            b = b > 1.0 ? 1.0 : b;
+            return Color.color(r < 0.0 ? 0.0 : r, g < 0.0 ? 0 : g, b < 0.0 ? 0 : b);
+        };
         Image transFormed = LatentImage.from(image)
-                .transform(avgFilter)
-                .transform(Color::grayscale)
-                .transform(grayFrame)
+                .transform(edgeFilter)
+            //    .transform(Color::grayscale)
+             //   .transform(grayFrame)
                 .toImage();
         FlowPane flowPane = new FlowPane(new ImageView(image), new ImageView(transFormed));
         // 方向を設定する(Orientation.VERTICAL : 垂直／Orientation.HORIZONTAL : 水平)

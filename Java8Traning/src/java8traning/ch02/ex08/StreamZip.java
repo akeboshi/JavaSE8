@@ -18,7 +18,6 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 /**
- * ぐぐったら出てきたコード。
  * 自分でもう少し考える。
  * @author akari
  */

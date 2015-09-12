@@ -58,12 +58,12 @@ public class LatentImage {
                 image[x][y] = in.getPixelReader().getColor(x, y);
 
 
-        for (int x = 0; x < width; x++)
-            for (int y = 0; y < height; y++) {
-                for (ImageTransformer f : pendingOperations)
+        for (ImageTransformer f : pendingOperations)
+            for (int x = 0; x < width; x++)
+                for (int y = 0; y < height; y++) {
                     image[x][y] = f.apply(x, y, image);
-                out.getPixelWriter().setColor(x, y, image[x][y]);
-            }
+                    out.getPixelWriter().setColor(x, y, image[x][y]);
+                }
         return out;
     }
 }

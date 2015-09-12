@@ -12,11 +12,11 @@ import java.util.Comparator;
  * Created by akari on 2015/08/11.
  */
 public class LexicographicComparator {
-    public static Comparator<Object> lexicographicComparator (String... fieldNames){
+    public static <T> Comparator<T> lexicographicComparator (String... fieldNames){
         return (o1, o2) -> {
             for (String s : fieldNames){
-                Object o1f = getValue(o1, s);
-                Object o2f = getValue(o2, s);
+                T o1f = getValue(o1, s);
+                T o2f = getValue(o2, s);
                 if (!o1f.equals(o2f))
                     return ((Comparable)o1f).compareTo(o2f);
             }
@@ -24,19 +24,19 @@ public class LexicographicComparator {
         };
     }
 
-    private static Object getValue(Object t, String fieldName){
+    private static <T> T getValue(T t, String fieldName){
         Class<?> cls = t.getClass();
-        Object cmp1 = null;
+        T cmp = null;
         try {
             Field fld = cls.getDeclaredField(fieldName);
             fld.setAccessible(true);
-            cmp1 = fld.get(t);
+            cmp = (T)fld.get(t);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
-        if (cmp1 == null)
+        if (cmp == null)
             throw new IllegalArgumentException();
-        return cmp1;
+        return cmp;
     }
 
 }

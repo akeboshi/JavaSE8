@@ -59,9 +59,9 @@ public class LatentImage {
         WritableImage out = new WritableImage(width, height);
         ImagePixelReader reader = new ImagePixelReader(width, height, in.getPixelReader());
 
+        for (ImageTransformer f : pendingOperations)
         for (int x = 0; x < width; x++)
             for (int y = 0; y < height; y++) {
-                for (ImageTransformer f : pendingOperations)
                     reader.setColorCache(x,y,f.apply(x, y, reader));
             }
         return reader.getImage();
