@@ -1,0 +1,23 @@
+役に立ちません. LongAdderは以下のメソッドしか有してないため。sumしか返せないです。
+void	add(long x)
+指定された値を加算します。
+void	decrement()
+add(-1)と等価です。
+double	doubleValue()
+sum()の拡張プリミティブ変換後の値をdoubleとして返します。
+float	floatValue()
+sum()の拡張プリミティブ変換後の値をfloatとして返します。
+void	increment()
+add(1)と等価です。
+int	intValue()
+sum()の縮小プリミティブ変換後の値をintとして返します。
+long	longValue()
+sum()と等価です。
+void	reset()
+合計を保持する変数をゼロにリセットします。
+long	sum()
+現在の合計を返します。
+long	sumThenReset()
+sum()に続いてreset()を実行した場合と効果は同じです。
+String	toString()
+sum()の文字列表現を返します。

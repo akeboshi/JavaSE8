@@ -5,13 +5,9 @@
 package java8traning.ch06.ex04;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAccumulator;
-import java.util.concurrent.atomic.LongAdder;
 
 public class Maaaaaaaaax {
 	private static final int countNum = 100_000;
