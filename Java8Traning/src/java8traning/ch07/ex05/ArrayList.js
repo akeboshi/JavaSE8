@@ -1,8 +1,9 @@
 #! /usr/local/bin/jjs
 
 function newArrayList () {
-  var arr = new (Java.extend(java.util.ArrayList)) {
-    add: function(x) {
+  var arr = new (Java.extend(java.util.ArrayList))
+  {
+    add: function add(x) {
       print ('Adding ' + x)
       return Java.super(arr).add(x)
     }
