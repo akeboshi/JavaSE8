@@ -5,13 +5,8 @@
 package java8traning.ch05.ex05;
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 
 public class PlzTellYourBirthday {
 	public static void main (String[] args) {

@@ -2,12 +2,14 @@
  * Copyright (c) 2015. Isao Aruga. All rights reserved.
  */
 
-package java8traning.ch05.ex10;
+package java8traning.ch05.ex11;
 
 
-import java.time.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 /*
 ロサンジェルスからフランクフルト行きの便は、ローカル時刻の3時5分に出発し、 10時間50分の飛行です。何時に到着しますか。このような計算を処理できる プログラムを書きなさい。
 

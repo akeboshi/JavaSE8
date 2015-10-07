@@ -9,10 +9,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class HelloJavaFX extends Application {
-    public static void main(String[] args) {
-        launch(args);
-    }
-
 	@Override
 	public void start(Stage stage) throws Exception {
 		String msg = "Hello,JavaFX";
@@ -23,8 +19,5 @@ public class HelloJavaFX extends Application {
 		stage.setScene(new Scene(new VBox(msgLabel, msgTextField)));
 		stage.setTitle("Hello,JavaFX World");
 		stage.show();
-
 	}
-
-
 }

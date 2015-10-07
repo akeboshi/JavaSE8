@@ -18,8 +18,9 @@ get().forEach(System.out::println);
 
 	public static List<String> get(){
 		List<String> list = new ArrayList<>();
+		LocalDateTime now = LocalDateTime.now();
 		ZoneId.getAvailableZoneIds().stream()
-				.map(z -> ZonedDateTime.now(ZoneId.of(z)))
+				.map(z -> ZonedDateTime.of(now,ZoneId.of(z)))
 				.forEach(off -> list.add(
 						off.getZone().getId() + " " + off.getOffset().toString()));
 		return list;

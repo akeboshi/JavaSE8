@@ -4,12 +4,7 @@
 
 package java8traning.ch05.ex07;
 
-
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TimeInterval {
 	private LocalDateTime start;
@@ -33,12 +28,14 @@ public class TimeInterval {
 		return end;
 	}
 
-	public boolean check (TimeInterval time) {
-		if (this.start.isBefore(time.getStart())) {
-			return this.end.isBefore(time.getEnd());
-		} else {
-			return time.getEnd().isBefore(this.end);
+	public boolean checkCross8 (TimeInterval time) {
+		TimeInterval first = this;
+		TimeInterval second = time;
+		if (this.getStart().isAfter(time.getStart())){
+			first = time;
+			second = this;
 		}
+		return first.getEnd().isBefore(second.getStart());
 	}
 
 }
