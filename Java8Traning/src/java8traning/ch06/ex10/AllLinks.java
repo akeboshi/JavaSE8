@@ -10,36 +10,44 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AllLinks {
 	public static void main (String[] args) {
 		try {
-			List<String> list = getLinks(getWebPage("http://google.co.jp"));
-			list.forEach(System.out::println);
+			CompletableFuture.supplyAsync(() -> getWebPage("http://google.co.jp"))
+					.thenApply(w -> getLinks(w)).thenAccept(w -> w.forEach(System.out::println));
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		ForkJoinPool.commonPool().awaitQuiescence(10, TimeUnit.SECONDS);
 	}
 
 
-	public static String getWebPage(String url) throws Exception{
-		URL page = new URL(url);
-		InputStream in = page.openStream();
-
-		BufferedReader br = new BufferedReader(new InputStreamReader(in, "JISAutoDetect"));
-		String line;
+	public static String getWebPage(String url) {
 		StringBuilder sb = new StringBuilder();
-		while((line = br.readLine()) != null) {
-			sb.append(line);
-			sb.append("\n");
+		try {
+			URL page = new URL(url);
+			InputStream in = page.openStream();
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(in, "JISAutoDetect"));
+			String line;
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+				sb.append("\n");
+			}
+		}catch (Exception e){
+			System.out.println(e);
 		}
 		return sb.toString();
 	}
 
 	public static List<String> getLinks(String page) {
-		String inPattern = "<a\\s+href\\s*=\\s*\"([^\"]+)\"\\s*";
+		String inPattern = "a\\s+href\\s*=\\s*\"([^\"]+)\"";
 		Pattern pattern = Pattern.compile(inPattern);
 		Matcher matcher = pattern.matcher(page);
 		List<String> result = new ArrayList<>();
