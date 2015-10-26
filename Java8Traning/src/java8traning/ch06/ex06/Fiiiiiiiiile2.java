@@ -36,9 +36,9 @@ public class Fiiiiiiiiile2 {
 			}
 			List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 			// 無駄にset作らなくていいよ！やったね！
-			words.stream().forEach(word -> {
-				chm.computeIfAbsent(word, key -> ConcurrentHashMap.newKeySet()).add(file);
-			});
+			words.stream().forEach(word ->
+				chm.computeIfAbsent(word, key -> ConcurrentHashMap.newKeySet()).add(file)
+			);
 		});
 		return chm;
 	}

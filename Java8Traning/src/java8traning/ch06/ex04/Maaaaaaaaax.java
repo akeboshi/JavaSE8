@@ -18,7 +18,7 @@ public class Maaaaaaaaax {
 		long tmp;
 		for (int i = 0 ; i < countNum ; i++ ) {
 			tmp = r.nextLong();
-			if (max < tmp) max = tmp;
+			max = max > tmp ? max : tmp;
 			val[i] = tmp;
 		}
 		long actual = getMax(val);

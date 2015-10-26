@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class AllLinks {
 	public static void main (String[] args) {
 		try {
-			CompletableFuture.supplyAsync(() -> getWebPage("http://google.co.jp"))
+			CompletableFuture.supplyAsync(() -> getWebPage("https://golang.org"))
 					.thenApply(w -> getLinks(w)).thenAccept(w -> w.forEach(System.out::println));
 		} catch (Exception e) {
 			System.out.println(e);

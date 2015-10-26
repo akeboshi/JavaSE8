@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class MyComputerSort {
-	private static int ato = 10;
+	private static int ato = 2;
 	public static void main(String[] args){
-		int num = 1;
+		int num = 10000;
 		while (true) {
 			long[] val = new long[num];
 			Random r = new Random();
@@ -21,7 +21,6 @@ public class MyComputerSort {
 			long parallel = measureParallelSort(val.clone());
 			long seq = measureSort(val.clone());
 			if (seq > parallel) {
-				ato /= 2;
 				System.out.println(num / ato + "から" + num + "のあいだ");
 				break;
 			}

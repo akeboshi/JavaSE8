@@ -10,4 +10,5 @@ var file = new JFile('/Users/akari/IdeaProjects/JavaSE8/Java8Traning/WarAndPease
 var contents = new JString(JFiles.readAllBytes(file.toPath()),JStandardCharasets.UTF_8)
 var words = JArrays.asList(contents.split(/\W+/))
 
-words.stream().map(function(w){w.toLowerCase()}).distinct().filter(function(w){w.length() > 12}).sorted().forEach(function(w){print(w)})
+words.stream().distinct().filter(function(w) {return w.length() > 12}).sorted().forEach(function(w) {print(w)})
+

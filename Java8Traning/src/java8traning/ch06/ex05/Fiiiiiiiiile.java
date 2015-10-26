@@ -38,8 +38,10 @@ public class Fiiiiiiiiile {
 			Set<File> set = new HashSet<>();
 			set.add(file);
 			words.stream().forEach(word -> chm.merge(word, set, (x, y) -> {
-				x.addAll(y);
-				return x;
+				Set<File> s = new HashSet<>();
+				s.addAll(x);
+				s.addAll(y);
+				return s;
 			}));
 		});
 		return chm;
