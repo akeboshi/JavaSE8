@@ -2,7 +2,7 @@
  * Copyright (c) 2015. Isao Aruga. All rights reserved.
  */
 
-package java8traning.ch08.ex08;
+package java8traning.ch08.ex09;
 
 
 import java.io.BufferedReader;
@@ -13,12 +13,8 @@ import java.util.*;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class TransScanner extends BufferedReader{
-	public TransScanner(Reader in, int sz) {
-		super(in, sz);
-	}
-
-	public Stream<String> lines() {
+public class TransScanner {
+	public static Stream<String> lines(Scanner scanner) {
 		Iterator<String> iter = new Iterator<String>() {
 			String nextLine = null;
 
@@ -27,12 +23,8 @@ public class TransScanner extends BufferedReader{
 				if (nextLine != null) {
 					return true;
 				} else {
-					try {
-						nextLine = readLine();
-						return (nextLine != null);
-					} catch (IOException e) {
-						throw new UncheckedIOException(e);
-					}
+					nextLine = scanner.nextLine();
+					return (nextLine != null);
 				}
 			}
 
