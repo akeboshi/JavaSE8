@@ -3,13 +3,6 @@
  */
 
 package java8traning.ch08.ex03;
-/*
-からけちゃん。
-ゆずゆず。
-フェインター
-ぺたんぺたん
-あたーし錯乱坊
- */
 
 public class GCD {
 	public static void main(String[] args){
